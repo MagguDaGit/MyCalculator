@@ -1,33 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using System.Data;
 
+
 namespace MyCalculator
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    
     public partial class MainWindow : Window
     {
-        // Regex implementering, blir ikke brukr foreløpig... 
-        private static readonly Regex _regex = new Regex("[^0-9.-]+");
-
         public MainWindow()
         {
+          
             InitializeComponent();
         }
          
@@ -36,35 +20,41 @@ namespace MyCalculator
 
         }
 
-        private static bool isValidInput(string input)
+        private bool NotValidInput(string input)
         {
-            return !_regex.IsMatch(input);
+            string regexPattern = "[^0-9+*.-]";
+            Regex regex = new Regex(regexPattern);
+            return regex.IsMatch(input);
+
         }
 
+        
         private void InputPreview(object sender, TextCompositionEventArgs e)
         {
-            string regexPattern = "[^0-9+*.-]"; 
-            Regex regex = new Regex(regexPattern);
-            e.Handled = regex.IsMatch(e.Text);
+            e.Handled = NotValidInput(e.Text.ToString());
         }
 
-        private void Calculator_Input(object sender, RoutedEventArgs e)
+
+        private void Calculate(string? text)
         {
-            Button _btn = (Button) sender;
-            switch(_btn.CommandParameter.ToString())
+            if (text == null) return; 
+            bool notValid= NotValidInput(textfield.Text.ToString());
+            if (notValid)
+            {
+                textfield.Clear();
+                textfield.Text = "0";
+                return;
+            }
+
+            switch (text)
             {
                 case "DEL":
                     {
-                        if (textfield.Text.Length < 1) return; 
+                        if (textfield.Text.Length == 0) return;
                         textfield.Text = textfield.Text.Substring(0, textfield.Text.Length - 1);
-                        return; 
-                    }
-                case "C":
-                    {
-                        textfield.Clear();
                         return;
                     }
-                case "CE":
+                case "C":
                     {
                         textfield.Clear();
                         return;
@@ -74,15 +64,30 @@ namespace MyCalculator
                         DataTable dt = new DataTable();
                         var result = dt.Compute(textfield.Text.ToString(), "");
                         textfield.Text = result.ToString();
-                        return; 
+                        return;
                     }
                 default:
                     {
-                        textfield.AppendText(_btn.CommandParameter.ToString());
-                        return; 
+                        textfield.AppendText(text);
+                        return;
                     }
             }
-            
+
+        }
+
+        private void Calculator_Input(object sender, RoutedEventArgs e)
+        {
+            bool invalid = NotValidInput(textfield.Text.ToString());
+            Button _btn = (Button) sender;
+
+            if(invalid)
+            { 
+                textfield.Clear();
+                textfield.Text = "0"; 
+                return; 
+            }
+
+            Calculate(_btn.CommandParameter.ToString());    
         }
     }
 }
