@@ -11,7 +11,7 @@
 
     <DockPanel>
         <DockPanel LastChildFill="True" DockPanel.Dock="Left" Width="auto" >
-        <TextBox DockPanel.Dock="Top" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Top"  Background="#FFDADADA" Height="76" TextChanged="TextBox_TextChanged" Text="0" PreviewTextInput="InputPreview" FontSize="48" TextAlignment="Right"/>
+        <TextBox Name="textfield" DockPanel.Dock="Top" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Top"  Background="#FFDADADA" Height="76" TextChanged="TextBox_TextChanged" Text="0" PreviewTextInput="InputPreview" FontSize="48" TextAlignment="Right"/>
         <Grid DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -26,26 +26,26 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"  />
             </Grid.RowDefinitions>
-            <Button Content="%" Grid.Column="0" Grid.Row="0"/>
-            <Button Content="CE" Grid.Column="1" Grid.Row="0"/>
-            <Button Content="C" Grid.Column="2" Grid.Row="0"/>
-            <Button Content="DEL" Grid.Column="3" Grid.Row="0"/>
-            <Button Content="1" Grid.Column="0" Grid.Row="1"/>
-            <Button Content="2" Grid.Column="1" Grid.Row="1"/>
-            <Button Content="3" Grid.Column="2" Grid.Row="1"/>
-            <Button Content="X" Grid.Column="3" Grid.Row="1"/>
-            <Button Content="4" Grid.Column="0" Grid.Row="2"/>
-            <Button Content="5" Grid.Column="1" Grid.Row="2"/>
-            <Button Content="6" Grid.Column="2" Grid.Row="2"/>
-            <Button Content="-" Grid.Column="3" Grid.Row="2"/>
-            <Button Content="7" Grid.Column="0" Grid.Row="3"/>
-            <Button Content="8" Grid.Column="1" Grid.Row="3"/>
-            <Button Content="9" Grid.Column="2" Grid.Row="3"/>
-            <Button Content="+" Grid.Column="3" Grid.Row="3"/>
-            <Button Content="+/-" Grid.Column="0" Grid.Row="4"/>
-            <Button Content="0" Grid.Column="1" Grid.Row="4"/>
-            <Button Content="," Grid.Column="2" Grid.Row="4" />
-            <Button Content="=" Grid.Column="3" Grid.Row="4"/>
+            <Button Content="%" CommandParameter="%" Grid.Column="0" Grid.Row="0" Click="Calculator_Input"/>
+            <Button Content="CE" CommandParameter="CE"  Grid.Column="1" Grid.Row="0" Click="Calculator_Input"/>
+            <Button Content="C" CommandParameter="C" Grid.Column="2" Grid.Row="0" Click="Calculator_Input"/>
+            <Button Content="DEL" CommandParameter="DEL"  Grid.Column="3" Grid.Row="0" Click="Calculator_Input"/>
+            <Button Content="1" CommandParameter="1" Grid.Column="0" Grid.Row="1" Click="Calculator_Input"/>
+            <Button Content="2" CommandParameter="2" Grid.Column="1" Grid.Row="1" Click="Calculator_Input"/>
+            <Button Content="3" CommandParameter="3" Grid.Column="2" Grid.Row="1" Click="Calculator_Input"/>
+            <Button Content="X" CommandParameter="*" Grid.Column="3" Grid.Row="1" Click="Calculator_Input"/>
+            <Button Content="4" CommandParameter="4" Grid.Column="0" Grid.Row="2" Click="Calculator_Input"/>
+            <Button Content="5" CommandParameter="5" Grid.Column="1" Grid.Row="2" Click="Calculator_Input"/>
+            <Button Content="6" CommandParameter="6" Grid.Column="2" Grid.Row="2" Click="Calculator_Input"/>
+            <Button Content="-" CommandParameter="-" Grid.Column="3" Grid.Row="2" Click="Calculator_Input"/>
+            <Button Content="7" CommandParameter="7" Grid.Column="0" Grid.Row="3" Click="Calculator_Input"/>
+            <Button Content="8" CommandParameter="8" Grid.Column="1" Grid.Row="3" Click="Calculator_Input"/>
+            <Button Content="9" CommandParameter="9" Grid.Column="2" Grid.Row="3" Click="Calculator_Input"/>
+            <Button Content="+" CommandParameter="+" Grid.Column="3" Grid.Row="3" Click="Calculator_Input"/>
+            <Button Content="+/-" CommandParameter="+/-" Grid.Column="0" Grid.Row="4" Click="Calculator_Input"/>
+            <Button Content="0" CommandParameter="0" Grid.Column="1" Grid.Row="4" Click="Calculator_Input"/>
+            <Button Content="," CommandParameter="." Grid.Column="2" Grid.Row="4" Click="Calculator_Input" />
+            <Button Content="=" CommandParameter="=" Grid.Column="3" Grid.Row="4" Click="Calculator_Input"/>
         </Grid>
     </DockPanel>
 
